@@ -12,7 +12,7 @@ interface GalleryFile {
 }
 
 interface GallerySectionProps {
-  route: "1" | "2" | "3";
+  route: "love" | "passion" | "kindness";
   onAddMemory?: () => void;
   isUploading?: boolean;
 }

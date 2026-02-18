@@ -4,7 +4,7 @@ import { readdir } from "fs/promises";
 
 export const runtime = "nodejs";
 
-const allowedRoutes = new Set(["1", "2", "3"]);
+const allowedRoutes = new Set(["love", "passion", "kindness"]);
 
 export async function GET(
   request: Request,

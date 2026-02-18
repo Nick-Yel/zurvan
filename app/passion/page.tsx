@@ -65,8 +65,9 @@ export default function RouteTwoPage() {
     }
   };
   return (
-    <main className="w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/assets/page-2.jpg)' }}>
-      <div className="flex flex-col items-start gap-6 md:gap-[55px] max-w-[1354px] mx-auto px-3 md:px-12 py-4 md:py-8">
+    <main className="w-full relative">
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50" style={{ backgroundImage: 'url(/assets/page-2.jpg)' }} />
+      <div className="flex flex-col items-start gap-6 md:gap-[55px] max-w-[1354px] mx-auto px-3 md:px-12 py-4 md:py-8 relative z-10">
       <div className="flex flex-row justify-center items-start gap-6 md:gap-[55px] w-full ">
         <div className="flex flex-col items-start gap-4 md:gap-[30px] ">
           <div className="w-[120px] h-[52px] md:w-[192.17px] md:h-[83.05px] "><div className="flex flex-col items-start gap-4 md:gap-[30px]">
@@ -89,7 +90,7 @@ export default function RouteTwoPage() {
       
       <div className="flex flex-row items-end gap-2.5 w-full">
         <div className="flex flex-col items-start gap-2.5 flex-1">
-          <p className="font-['Kanit'] font-normal text-base md:text-2xl leading-[150%] text-[#171717]">Welcome, Mohamed</p>
+          <p className="font-['Kanit'] font-normal text-base md:text-2xl leading-[150%] text-[#171717]">Welcome,</p>
           <h1 className="font-['Playfair_Display'] font-black text-2xl md:text-[56px] leading-[120%] text-[#A50019] w-full">Your memories with Royi Sal</h1>
         </div>
         <input
@@ -127,7 +128,7 @@ export default function RouteTwoPage() {
         </div>
       )}
       <div className="relative overflow-y-auto md:overflow-visible w-full">
-        <GallerySection route="2" onAddMemory={handleAddMemoryClick} isUploading={isUploading} />
+        <GallerySection route="passion" onAddMemory={handleAddMemoryClick} isUploading={isUploading} />
       </div>
       </div>
     </main>

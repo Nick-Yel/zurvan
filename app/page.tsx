@@ -25,22 +25,22 @@ export default function Home() {
           
           <div className="flex flex-col gap-4 w-full mt-8">
             <Link
-              href="/1"
+              href="/love"
               className="flex items-center justify-center px-8 py-6 bg-[#A50019] rounded-[10px] font-['Kanit'] font-normal text-2xl text-[#FFF6F5] hover:bg-[#8A0016] transition-colors cursor-pointer"
             >
-              Route 1
+              Love
             </Link>
             <Link
-              href="/2"
+              href="/passion"
               className="flex items-center justify-center px-8 py-6 bg-[#A50019] rounded-[10px] font-['Kanit'] font-normal text-2xl text-[#FFF6F5] hover:bg-[#8A0016] transition-colors cursor-pointer"
             >
-              Route 2
+              Passion
             </Link>
             <Link
-              href="/3"
+              href="/kindness"
               className="flex items-center justify-center px-8 py-6 bg-[#A50019] rounded-[10px] font-['Kanit'] font-normal text-2xl text-[#FFF6F5] hover:bg-[#8A0016] transition-colors cursor-pointer"
             >
-              Route 3
+              Kindness
             </Link>
           </div>
         </div>
