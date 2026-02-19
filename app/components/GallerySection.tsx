@@ -125,7 +125,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
   ];
 
   return (
-    <section className="w-[100%]">
+    <section className="w-[100%] md:min-h-[60vh]">
       <div className="mb-6 flex flex-row justify-between items-center w-full mx-auto px-2 md:px-12">
         <div className="hidden md:flex flex-row items-center gap-[5px] ">
            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="21" viewBox="0 0 23 21" fill="none">
@@ -184,11 +184,11 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                       src={file.path}
                       alt={file.name}
                       fill
-                    className="object-cover transition group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    loading="lazy"
-                    placeholder="empty"
-                  />
+                      className="object-cover transition group-hover:scale-105 group-active:scale-105 group-focus-within:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
+                      placeholder="empty"
+                    />
                 </div>
               ) : file.type === "video" ? (
                 <div className="relative w-full h-full bg-black flex items-center justify-center">
@@ -198,7 +198,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                   >
                     <source src={`${file.path}#t=0.5`} />
                   </video>
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 group-active:bg-black/50 group-focus-within:bg-black/50 transition-colors">
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/90 flex items-center justify-center">
                       <svg className="w-6 h-6 md:w-8 md:h-8 text-[#A50019] ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
@@ -224,7 +224,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                       <p className="text-[#171717]/70 text-xs md:text-sm truncate max-w-[150px] md:max-w-[200px] mx-auto">{file.name.replace(/\.[^/.]+$/, "")}</p>
                     </div>
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100 transition-opacity bg-black/40">
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/90 flex items-center justify-center">
                       <svg className="w-6 h-6 md:w-8 md:h-8 text-[#A50019] ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
@@ -233,8 +233,8 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                   </div>
                 </div>
               ) : null}
-              <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-gray-800 p-3 transition-all duration-300 ease-out group-hover:translate-y-0 translate-y-full">
-                <p className="truncate text-sm text-white flex-1 pr-2">
+              <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-white p-3 transition-all duration-300 ease-out group-hover:translate-y-0 group-active:translate-y-0 group-focus-within:translate-y-0 translate-y-full">
+                <p className="truncate font-['Kanit'] text-base text-black flex-1 pr-2">
                   {file.name}
                 </p>
                 <button
@@ -242,7 +242,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                     e.stopPropagation();
                     setDeleteConfirm(file.name);
                   }}
-                  className="flex-shrink-0 text-white hover:text-red-500 transition-colors"
+                  className="flex-shrink-0 text-black hover:text-red-500 transition-colors"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />

@@ -10,7 +10,7 @@ type ToastState = {
 } | null;
 
 type UploadFormProps = {
-  route: "1" | "2" | "3";
+  route: "love" | "passion" | "kindness";
 };
 
 export default function UploadForm({ route }: UploadFormProps) {

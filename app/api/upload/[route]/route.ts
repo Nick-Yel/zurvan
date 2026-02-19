@@ -5,7 +5,7 @@ import { mkdir, writeFile } from "fs/promises";
 export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
-const allowedRoutes = new Set(["1", "2", "3"]);
+const allowedRoutes = new Set(["love", "passion", "kindness"]);
 
 function sanitizeFileName(name: string) {
   return path.basename(name).replace(/[^a-zA-Z0-9._-]/g, "_");
@@ -18,7 +18,8 @@ export async function POST(
   try {
     const { route } = await context.params;
     
-
+    console.log(route,'route');
+    
     if (!allowedRoutes.has(route)) {
       return NextResponse.json({ error: "Invalid upload route." }, { status: 400 });
     }

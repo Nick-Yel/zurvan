@@ -66,7 +66,7 @@ export default function RouteOnePage() {
   };
   return (
     <main className="w-full relative">
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50" style={{ backgroundImage: 'url(/assets/romantic.jpg)' }} />
+      <div className="absolute inset-0 bg-cover bg-top bg-no-repeat bg-fixed opacity-50" style={{ backgroundImage: 'url(/assets/romantic.jpg)' }} />
       <div className="flex flex-col items-start gap-6 md:gap-[55px] max-w-[1354px] mx-auto px-3 md:px-12 py-4 md:py-8 relative z-10">
       <div className="flex flex-row justify-center items-start gap-6 md:gap-[55px] w-full ">
         <div className="flex flex-col items-start gap-4 md:gap-[30px] ">
