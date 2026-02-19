@@ -334,6 +334,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                     className="object-contain"
                     sizes="100vw"
                     priority
+                    unoptimized
                   />
                 </div>
               </div>
