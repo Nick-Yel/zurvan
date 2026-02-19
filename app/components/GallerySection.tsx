@@ -77,7 +77,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
         const data: string[] = await response.json();
         const galleryFiles: GalleryFile[] = data.map((fileName) => ({
           name: fileName,
-          path: `/uploads/${route}/${fileName}`,
+          path: `/api/files/${route}/${fileName}`,
           type: getFileType(fileName),
         }));
 
