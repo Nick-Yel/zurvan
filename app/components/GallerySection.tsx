@@ -175,8 +175,9 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
             {paginatedFiles.map((file) => (
               <div
                 key={file.path}
-                className="group relative overflow-hidden bg-white cursor-pointer w-full aspect-square"
+                className="group relative overflow-hidden bg-white cursor-pointer w-full aspect-square select-none touch-manipulation"
                 onClick={() => setSelectedFile(file)}
+                onContextMenu={(e) => e.preventDefault()}
               >
                 {file.type === "image" ? (
                   <div className="relative w-full h-full overflow-hidden bg-gray-200">
@@ -198,7 +199,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                   >
                     <source src={`${file.path}#t=0.5`} />
                   </video>
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 group-active:bg-black/50 group-focus-within:bg-black/50 transition-colors">
+                  <div className="absolute inset-0 md:inset-0 bottom-12 md:bottom-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 group-active:bg-black/50 group-focus-within:bg-black/50 transition-colors">
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/90 flex items-center justify-center">
                       <svg className="w-6 h-6 md:w-8 md:h-8 text-[#A50019] ml-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
@@ -209,7 +210,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
               ) : file.type === "audio" ? (
                 <div className="relative w-full h-full bg-gradient-to-br from-white via-[#FFF6F5] to-[#A50019] flex items-center justify-center">
                   <div className="absolute inset-0 bg-black/5"></div>
-                  <div className="relative z-10 text-center">
+                  <div className="relative z-10 text-center pb-12 md:pb-0 flex flex-col items-center justify-center">
                     <div className="w-12 h-12 md:w-24 md:h-24 mx-auto mb-2 md:mb-4 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center border-2 border-[#A50019]/20">
                       <svg
                         className="w-6 h-6 md:w-12 md:h-12 text-[#A50019]"
@@ -219,7 +220,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                         <path d="M18 3a1 1 0 00-1.196-.98l-10 2.5a1 1 0 00-.804.98V13a3 3 0 100 2v-7.22l8-2V11a3 3 0 100 2V3z" />
                       </svg>
                     </div>
-                    <div className="px-2 md:px-4">
+                    <div className="px-2 md:px-4 hidden md:block">
                       <p className="text-[#171717] font-['Kanit'] font-bold text-sm md:text-lg mb-1">Audio File</p>
                       <p className="text-[#171717]/70 text-xs md:text-sm truncate max-w-[150px] md:max-w-[200px] mx-auto">{file.name.replace(/\.[^/.]+$/, "")}</p>
                     </div>
@@ -233,8 +234,8 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                   </div>
                 </div>
               ) : null}
-              <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-white p-3 transition-all duration-300 ease-out group-hover:translate-y-0 group-active:translate-y-0 group-focus-within:translate-y-0 translate-y-full">
-                <p className="truncate font-['Kanit'] text-base text-black flex-1 pr-2">
+              <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-white p-3 transition-all duration-300 ease-out group-hover:translate-y-0 md:translate-y-full md:group-hover:translate-y-0">
+                <p className="truncate font-['Kanit'] text-xs md:text-base text-black flex-1 pr-2">
                   {file.name}
                 </p>
                 <button
@@ -244,7 +245,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                   }}
                   className="flex-shrink-0 text-black hover:text-red-500 transition-colors"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                 </button>
@@ -257,12 +258,13 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
           {onAddMemory && (
             <div className="md:hidden flex justify-end px-2 md:px-12 mt-6">
               <button 
-                className="flex flex-row justify-center items-center px-3 py-2 gap-2 bg-[#A50019] rounded-[10px] disabled:opacity-60 cursor-pointer shadow-lg"
+                className="flex items-center justify-center w-12 h-12 bg-[#A50019] rounded-[10px] disabled:opacity-60 cursor-pointer shadow-lg"
                 onClick={onAddMemory}
                 disabled={isUploading}
+                aria-label={isUploading ? "Adding memory" : "Add memory"}
               >
-                <span className="font-['Kanit'] font-normal text-xs leading-[150%] text-[#FFF6F5]">
-                  {isUploading ? "Adding..." : ""}
+                <span className="sr-only">
+                  {isUploading ? "Adding..." : "Add Memory"}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
                   <path d="M2 2H15V9H17V2C17 0.897 16.103 0 15 0H2C0.897 0 0 0.897 0 2V14C0 15.103 0.897 16 2 16H10V14H2V2Z" fill="white"/>

@@ -4,20 +4,20 @@ export const metadata: Metadata = {
   title: "Love - Royi Sal",
   description: "Preserve and cherish your precious love memories with Royi Sal.",
   icons: {
-    icon: "/file.svg",
-    apple: "/file.svg",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
     title: "Love - Royi Sal",
     description: "Preserve and cherish your precious love memories with Royi Sal.",
-    images: ["/file.svg"],
+    images: ["/icon.svg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Love - Royi Sal",
     description: "Preserve and cherish your precious love memories with Royi Sal.",
-    images: ["/file.svg"],
+    images: ["/icon.svg"],
   },
 };
 
