@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import GallerySection from "../components/GallerySection";
 
 type ToastType = "success" | "error";
@@ -14,7 +14,14 @@ export default function RouteTwoPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [toast, setToast] = useState<ToastState>(null);
+  const [bgLoaded, setBgLoaded] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setBgLoaded(true);
+    img.src = '/assets/page-2.jpg';
+  }, []);
 
   const showToast = (type: ToastType, message: string) => {
     setToast({ type, message });
@@ -66,7 +73,7 @@ export default function RouteTwoPage() {
   };
   return (
     <main className="w-full relative">
-      <div className="absolute inset-0 bg-cover bg-top bg-no-repeat bg-fixed opacity-50" style={{ backgroundImage: 'url(/assets/page-2.jpg)' }} />
+      <div className="absolute inset-0 bg-cover bg-top bg-no-repeat bg-fixed transition-opacity duration-500" style={{ backgroundImage: bgLoaded ? 'url(/assets/page-2.jpg)' : 'none', opacity: bgLoaded ? 0.5 : 0 }} />
       <div className="flex flex-col items-start gap-6 md:gap-[55px] max-w-[1354px] mx-auto px-3 md:px-12 py-4 md:py-8 relative z-10">
       <div className="flex flex-row justify-center items-start gap-6 md:gap-[55px] w-full ">
         <div className="flex flex-col items-start gap-4 md:gap-[30px] ">

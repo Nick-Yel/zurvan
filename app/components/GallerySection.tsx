@@ -188,6 +188,7 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                       className="object-cover transition group-hover:scale-105 group-active:scale-105 group-focus-within:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       loading="lazy"
+                      unoptimized
                       placeholder="empty"
                     />
                 </div>
@@ -316,34 +317,30 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
 
       {selectedFile && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
           onClick={() => setSelectedFile(null)}
         >
           <div
-            className="relative max-h-[90vh] max-w-4xl w-full"
+            className="relative w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setSelectedFile(null)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition text-2xl font-bold"
-            >
-              ×
-            </button>
-
             {selectedFile.type === "image" ? (
-              <div className="relative aspect-video w-full">
-                <Image
-                  src={selectedFile.path}
-                  alt={selectedFile.name}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                />
+              <div className="relative w-full">
+                <div className="relative aspect-video w-full">
+                  <Image
+                    src={selectedFile.path}
+                    alt={selectedFile.name}
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    priority
+                  />
+                </div>
               </div>
             ) : selectedFile.type === "video" ? (
-              <div className="relative w-full bg-black rounded-lg overflow-hidden">
+              <div className="relative w-full max-w-3xl mx-auto">
                 <video
-                  className="w-full max-h-[90vh] object-contain"
+                  className="w-full h-auto object-contain rounded-lg"
                   controls
                   autoPlay
                   controlsList="nodownload"
@@ -353,26 +350,28 @@ export default function GallerySection({ route, onAddMemory, isUploading }: Gall
                 </video>
               </div>
             ) : selectedFile.type === "audio" ? (
-              <div className="relative w-full bg-gradient-to-br from-white via-[#FFF6F5] to-[#A50019] rounded-lg overflow-hidden p-12">
-                <div className="absolute inset-0 bg-black/5"></div>
-                <div className="relative z-10 flex flex-col items-center justify-center gap-6">
-                  <div className="w-32 h-32 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center border-4 border-[#A50019]/30">
-                    <svg
-                      className="w-16 h-16 text-[#A50019]"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M18 3a1 1 0 00-1.196-.98l-10 2.5a1 1 0 00-.804.98V13a3 3 0 100 2v-7.22l8-2V11a3 3 0 100 2V3z" />
-                    </svg>
+              <div className="relative w-full max-w-2xl mx-auto">
+                <div className="bg-gradient-to-br from-white via-[#FFF6F5] to-[#A50019] rounded-lg overflow-hidden p-12">
+                  <div className="absolute inset-0 bg-black/5"></div>
+                  <div className="relative z-10 flex flex-col items-center justify-center gap-6">
+                    <div className="w-32 h-32 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center border-4 border-[#A50019]/30">
+                      <svg
+                        className="w-16 h-16 text-[#A50019]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2.5a1 1 0 00-.804.98V13a3 3 0 100 2v-7.22l8-2V11a3 3 0 100 2V3z" />
+                      </svg>
+                    </div>
+                    <div className="text-center px-4">
+                      <h3 className="text-[#171717] font-['Playfair_Display'] font-black text-3xl mb-2">Now Playing</h3>
+                      <p className="text-[#171717]/80 font-['Kanit'] text-lg mb-6 max-w-md truncate">{selectedFile.name}</p>
+                    </div>
+                    <audio controls autoPlay className="w-full max-w-md">
+                      <source src={selectedFile.path} />
+                      Your browser does not support the audio element.
+                    </audio>
                   </div>
-                  <div className="text-center px-4">
-                    <h3 className="text-[#171717] font-['Playfair_Display'] font-black text-3xl mb-2">Now Playing</h3>
-                    <p className="text-[#171717]/80 font-['Kanit'] text-lg mb-6 max-w-md truncate">{selectedFile.name}</p>
-                  </div>
-                  <audio controls autoPlay className="w-full max-w-md">
-                    <source src={selectedFile.path} />
-                    Your browser does not support the audio element.
-                  </audio>
                 </div>
               </div>
             ) : null}
